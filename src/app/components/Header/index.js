@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-// import { Routes, Link, Route, useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+
 import Button from "../Button";
 
 import logo from "../../images/logo.svg";
@@ -19,18 +20,29 @@ function Header({ updateAuthToken, authToken }) {
         <Link to="/">
           <img className="Header__logo" src={logo} alt="logo" />
         </Link>
-        <Button to={authToken ? null : "/login"} onClick={authToken ? onLogout : null}>
+        <Button
+          to={authToken ? null : "/login"}
+          onClick={authToken ? onLogout : null}
+        >
           {authToken ? "Log out" : "Sign in"}
         </Button>
-
-        {/* <Routes>
-          <Route path="/content" element={<Button onClick={onLogout}>Log out</Button>} />
-          <Route path="/content/:id" element={<Button onClick={onLogout}>Log out</Button>} />
-          <Route path="*" element={<Button to="/login">Sign in</Button>} />
-        </Routes> */}
       </div>
     </header>
   );
 }
 
-export default Header;
+function MapStateToProps(state) {
+  return {
+    authToken: state.content.authToken,
+  };
+}
+
+function MapDispatchToProps(dispatch) {
+  return {
+    updateAuthToken: (token) => {
+      dispatch({ type: "UPDATE_AUTHTOKEN", token });
+    },
+  };
+}
+
+export default connect(MapStateToProps, MapDispatchToProps)(Header);

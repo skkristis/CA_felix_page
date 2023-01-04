@@ -3,10 +3,10 @@ import Footer from "../Footer";
 
 import "./index.css";
 
-function Layout({ children, updateAuthToken, authToken }) {
+function Layout({ children }) {
   return (
     <div className="Layout">
-      <Header updateAuthToken={updateAuthToken} authToken={authToken} />
+      <Header />
       <main className="Layout__main">{children}</main>
       <Footer />
     </div>

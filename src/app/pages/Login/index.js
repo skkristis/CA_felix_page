@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 
-import "./index.css";
+import { LOGIN_API } from "../../constants";
 
-const LOGIN_API = "https://dummy-video-api.onrender.com/auth/login";
+import "./index.css";
 
 function Login({ updateAuthToken }) {
   const navigate = useNavigate();
@@ -69,4 +71,16 @@ function Login({ updateAuthToken }) {
   );
 }
 
-export default Login;
+function MapStateToProps(state) {
+  return {};
+}
+
+function MapDispatchToProps(dispatch) {
+  return {
+    updateAuthToken: (token) => {
+      dispatch({ type: "UPDATE_AUTHTOKEN", token });
+    },
+  };
+}
+
+export default connect(MapStateToProps, MapDispatchToProps)(Login);
