@@ -31,7 +31,6 @@ function Content({
 
         const resultData = await response.json();
 
-        console.log(resultData);
         updateMovies(resultData);
       } catch (error) {
         setError(true);
@@ -68,7 +67,7 @@ function Content({
 function MapStateToProps(state) {
   return {
     favorites: state.content.favorites,
-    authToken: state.content.authToken,
+    authToken: state.authentication.authToken,
     movies: state.content.movies,
   };
 }

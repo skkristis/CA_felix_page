@@ -3,7 +3,6 @@ import { FAVORITES_STORAGE_KEY, AUTH_TOKEN_STORAGE_KEY } from "../../constants";
 const INITIAL_STATE = {
   favorites:
     JSON.parse(window.localStorage.getItem(FAVORITES_STORAGE_KEY)) || [],
-  authToken: window.localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || "",
   movies: [],
 };
 
@@ -32,12 +31,6 @@ function contentReducer(state = INITIAL_STATE, action) {
       );
 
       return { ...state, favorites: newFavorites };
-    }
-
-    case "UPDATE_AUTHTOKEN": {
-      window.localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, action.token);
-
-      return { ...state, authToken: action.token ? action.token : "" };
     }
 
     case "UPDATE_MOVIE_LIST": {

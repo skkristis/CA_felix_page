@@ -33,7 +33,7 @@ function Header({ updateAuthToken, authToken }) {
 
 function MapStateToProps(state) {
   return {
-    authToken: state.content.authToken,
+    authToken: state.authentication.authToken,
   };
 }
 

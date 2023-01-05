@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useCallback } from "react";
 import { Provider } from "react-redux";
 
 import Home from "./pages/Home";
@@ -9,8 +8,6 @@ import Layout from "./components/Layout";
 import store from "./state";
 
 function App() {
-  useEffect(() => {}, []);
-
   return (
     <Provider store={store}>
       <BrowserRouter>
